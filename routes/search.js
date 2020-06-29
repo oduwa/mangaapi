@@ -56,7 +56,8 @@ router.get('/', function(req, res) {
                     "resultName": resultName,
                     "resultUrl": resultUrl,
                     "resultFullUrl" : resultFullUrl,
-                    "resultThumbImageUrl" : thumb,
+                    "resultSearchThumbImageUrl" : thumb,
+										"resultThumbImageUrl" : thumb.replace('r0.', 'l0.'),
                     "resultChapters" : chapters,
                     "resultType" : type,
                     "resultGenre" : genre
@@ -93,7 +94,7 @@ router.get('/', function(req, res) {
 	        };
 
 	        res.send(JSON.stringify(searchResults));
-	    });		
+	    });
 	} else {
 		res.send('no searchTerm');
 	}
