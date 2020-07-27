@@ -10,12 +10,22 @@ router.get('/', function(req, res) {
 
 	if (comicUrl) {
         var chapters = [];
+				var description = "";
+				var genres = [];
 
 	    request(comicUrl, function(err, resp, body) {
 	        if (err)
 	            throw err;
 
 	        $ = cheerio.load(body);
+
+					$('#readmangasum p').each(function(result){
+						description = $(this).text();
+					});
+
+					$('.genretags').each(function(i, res){
+						genres.push($(this).text());
+					});
 
 	        $('#listing tr').each(function(result) {
 	        	if ($(this).attr('class') != 'table_head') {
@@ -43,17 +53,19 @@ router.get('/', function(req, res) {
 	                };
 
 	                chapters.push(chapter);
-				} 
+				}
 	        });
 
 	        var chapterResults = {
 	        	"comicUrl" : comicUrl,
+						"description": description,
+						"genres": genres.join(", "),
 	        	"chapterCount" : chapters.length,
 	        	"chapters": chapters
 	        };
 
 	        res.send(JSON.stringify(chapterResults));
-	    });		
+	    });
 	} else {
 		res.send('no searchTerm');
 	}

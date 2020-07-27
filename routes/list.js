@@ -43,7 +43,7 @@ router.get('/', function(req, res) {
               results.push({
                 "title": resultName,
                 "slug": resultUrl,
-                "comic_link": rootUrl + resultUrl
+                "link": rootUrl + resultUrl
               });
             }
           });
