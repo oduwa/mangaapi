@@ -17,8 +17,9 @@ router.get('/', function(req, res) {
 
 			var page = {};
 
-	        $('#imgholder').each(function(result) {
-				$(this).find('img').each(function() {
+
+			$('#main .d54 .d56 #ic').each(function(result){
+				$(this).find('img').each(function(){
 					var imageWidth = null;
 					var imageHeight = null;
 					var imageSource = null;
@@ -32,11 +33,11 @@ router.get('/', function(req, res) {
 					page = {
 	                    "imageWidth": imageWidth,
 	                    "imageHeight" : imageHeight,
-	                    "imageSource" : imageSource,
+	                    "imageSource" : "http:" + imageSource,
 	                    "imageAlt" : imageAlt
-	                };
-    			});
-	        });
+	         };
+				});
+			});
 
 	        var pageResults = {
 	        	"pageUrl" : pageUrl,
@@ -44,7 +45,7 @@ router.get('/', function(req, res) {
 	        };
 
 	        res.send(JSON.stringify(pageResults));
-	    });		
+	    });
 	} else {
 		res.send('no searchTerm');
 	}
