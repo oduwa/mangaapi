@@ -19,7 +19,6 @@ router.get('/', function(req, res) {
 
 	        $ = cheerio.load(body);
 
-					//console.log($('.d46'));
 
 					$('.d46 p').each(function(result){
 						description = $(this).text();
@@ -27,37 +26,37 @@ router.get('/', function(req, res) {
 
 					$('.d42').each(function(i, res){
 						genres.push($(this).text());
-						console.log($(genres));
 					});
 
-	        $('#listing tr').each(function(result) {
-	        	if ($(this).attr('class') != 'table_head') {
-		        	var chapterUrl = null;
-		        	var chapterFullUrl = null;
-		        	var chapterTitle = null;
-		        	var chapterDescription = null;
-		        	var chapterDate = null;
+					$('.d48 tr').each(function(result){
+						var chapterUrl = null;
+						var chapterFullUrl = null;
+						var chapterTitle = null;
+						var chapterDescription = null;
+						var chapterDate = null;
 
-					$(this).find('td').each(function() {
-						chapterDate = $(this).text();
-						$(this).find('a').each(function() {
-							chapterUrl = $(this).attr('href');
-							chapterFullUrl = rootUrl + chapterUrl;
-							chapterTitle = $(this).text();
+						$(this).find('td').each(function() {
+							chapterDate = $(this).text();
+							$(this).find('a').each(function() {
+								chapterUrl = $(this).attr('href');
+								chapterFullUrl = rootUrl + chapterUrl;
+								chapterTitle = $(this).text();
+			    			});
 		    			});
-	    			});
 
-					var chapter = {
-	                    "chapterUrl": chapterUrl,
-	                    "chapterFullUrl" : chapterFullUrl,
-	                    "chapterTitle": chapterTitle,
-	                    "chapterDescription" : chapterDescription,
-	                    "chapterDate" : chapterDate
-	                };
+							var chapter = {
+			                    "chapterUrl": chapterUrl,
+			                    "chapterFullUrl" : chapterFullUrl,
+			                    "chapterTitle": chapterTitle,
+			                    "chapterDescription" : chapterDescription,
+			                    "chapterDate" : chapterDate
+			                };
 
-	                chapters.push(chapter);
-				}
-	        });
+			                chapters.push(chapter);
+					});
+
+					//console.log($(tr).children().first().children().last());
+
 
 	        var chapterResults = {
 	        	"comicUrl" : comicUrl,
