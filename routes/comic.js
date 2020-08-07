@@ -19,12 +19,15 @@ router.get('/', function(req, res) {
 
 	        $ = cheerio.load(body);
 
-					$('#readmangasum p').each(function(result){
+					//console.log($('.d46'));
+
+					$('.d46 p').each(function(result){
 						description = $(this).text();
 					});
 
-					$('.genretags').each(function(i, res){
+					$('.d42').each(function(i, res){
 						genres.push($(this).text());
+						console.log($(genres));
 					});
 
 	        $('#listing tr').each(function(result) {
