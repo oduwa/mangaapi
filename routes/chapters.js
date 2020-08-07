@@ -17,23 +17,21 @@ router.get('/', function(req, res) {
 
 	        $ = cheerio.load(body);
 
-	        $('#pageMenu option').each(function(result) {
-	        	var pageNumber = null;
-	        	var pageUrl = null;
-	        	var pageFullUrl = null;
+					var data = $('#main script').text().replace("document[\"mj\"]=", "");
+					var chapterData = JSON.parse(data);
 
-	        	pageUrl = $(this).attr('value');
-	        	pageFullUrl = rootUrl + pageUrl;
-	        	pageNumber = $(this).text();
+					urlComponents = chapterUrl.split("/");
+					console.log(urlComponents);
+					console.log(chapterData["im"]);
+					for(i = 0; i < chapterData["im"].length; i++){
+						pageNum = i+1;
+						pages.push({
+		                    "pageNumber": pageNum,
+		                    "pageUrl": "/" + urlComponents[3] + "/" + urlComponents[4] + "/" + pageNum,
+		                    "pageFullUrl" : chapterUrl + "/" + pageNum
+		                });
+					}
 
-				var page = {
-                    "pageNumber": pageNumber,
-                    "pageUrl" : pageUrl,
-                    "pageFullUrl" : pageFullUrl
-                };
-
-                pages.push(page);
-	        });
 
 	        var pageResults = {
 	        	"chapterUrl" : chapterUrl,
@@ -42,7 +40,7 @@ router.get('/', function(req, res) {
 	        };
 
 	        res.send(JSON.stringify(pageResults));
-	    });		
+	    });
 	} else {
 		res.send('no searchTerm');
 	}

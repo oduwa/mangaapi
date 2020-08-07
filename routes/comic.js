@@ -55,9 +55,6 @@ router.get('/', function(req, res) {
 			                chapters.push(chapter);
 					});
 
-					//console.log($(tr).children().first().children().last());
-
-
 	        var chapterResults = {
 	        	"comicUrl" : comicUrl,
 						"description": description,
