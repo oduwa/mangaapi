@@ -52,7 +52,11 @@ router.get('/', function(req, res) {
 			                    "chapterDate" : chapterDate
 			                };
 
-			                chapters.push(chapter);
+											if(chapterTitle){
+												chapters.push(chapter);
+											}
+
+
 					});
 
 	        var chapterResults = {
