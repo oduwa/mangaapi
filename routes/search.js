@@ -60,6 +60,7 @@ router.get('/', function(req, res) {
 							});
 
 							if(resultName){
+								thumb = "http://s3.mangareader.net" + "/cover" + resultUrl + resultUrl + "-r0.jpg";
 								var result = {
 														"resultName": resultName,
 														"resultUrl": resultUrl,
