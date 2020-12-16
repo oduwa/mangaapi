@@ -29,8 +29,8 @@ router.get('/', function(req, res) {
 		for(var i = 0; i < body.results.length; i++){
 			var result = {
 									"resultName": body.results[i].title,
-									"resultUrl": body.results[i].title.toLowerCase().replace(" ", "-"),
-									"resultFullUrl" : rootUrl + body.results[i].title.toLowerCase().replace(" ", "-"),
+									"resultUrl": "/" + body.results[i].title.toLowerCase().replace(" ", "-"),
+									"resultFullUrl" : rootUrl + "/" + body.results[i].title.toLowerCase().replace(" ", "-"),
 									"resultSearchThumbImageUrl" : body.results[i].image_url,
 									"resultThumbImageUrl" : body.results[i].image_url,
 									"resultChapters" : body.results[i].chapters,
