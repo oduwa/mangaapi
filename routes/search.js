@@ -33,7 +33,7 @@ router.get('/', function(req, res) {
 									"resultFullUrl" : rootUrl + "/" + body.results[i].title.toLowerCase().replace(" ", "-"),
 									"resultSearchThumbImageUrl" : body.results[i].image_url,
 									"resultThumbImageUrl" : body.results[i].image_url,
-									"resultChapters" : body.results[i].chapters,
+									"resultChapters" : ""+body.results[i].chapters,
 									"resultType" : body.results[i].type,
 									"resultGenre" : " - "
 							};
