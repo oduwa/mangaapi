@@ -24,7 +24,6 @@ router.get('/', function(req, res) {
 	request(options, function (error, response, body) {
 		if (error) throw new Error(error);
 		body = JSON.parse(body);
-		console.log(body);
 
 		var results = [];
 		for(var i = 0; i < body.results.length; i++){
