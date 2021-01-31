@@ -20,43 +20,39 @@ router.get('/', function(req, res) {
 	        $ = cheerio.load(body);
 
 
-					$('.d46 p').each(function(result){
+					$('#noidungm').each(function(result){
 						description = $(this).text();
 					});
 
-					$('.d42').each(function(i, res){
+					$('.green').each(function(i, res){
 						genres.push($(this).text());
 					});
 
-					$('.d48 tr').each(function(result){
+					$('.leftoff').each(function(result){
 						var chapterUrl = null;
 						var chapterFullUrl = null;
 						var chapterTitle = null;
 						var chapterDescription = null;
 						var chapterDate = null;
 
-						$(this).find('td').each(function() {
-							chapterDate = $(this).text();
-							$(this).find('a').each(function() {
-								chapterUrl = $(this).attr('href');
-								chapterFullUrl = rootUrl + chapterUrl;
-								chapterTitle = $(this).text();
-			    			});
-		    			});
+						$(this).find('a').each(function() {
+							chapterUrl = $(this).attr('href');
+							chapterFullUrl = rootUrl + chapterUrl;
+							chapterTitle = $(this).text();
+							console.log(chapterTitle);
+						});
 
-							var chapter = {
-			                    "chapterUrl": chapterUrl,
-			                    "chapterFullUrl" : chapterFullUrl,
-			                    "chapterTitle": chapterTitle,
-			                    "chapterDescription" : chapterDescription,
-			                    "chapterDate" : chapterDate
-			                };
+						var chapter = {
+							"chapterUrl": chapterUrl,
+							"chapterFullUrl" : chapterFullUrl,
+							"chapterTitle": chapterTitle,
+							"chapterDescription" : chapterDescription,
+							"chapterDate" : chapterDate
+						};
 
-											if(chapterTitle){
-												chapters.push(chapter);
-											}
-
-
+						if(chapterTitle){
+							chapters.push(chapter);
+						}
 					});
 
 	        var chapterResults = {
