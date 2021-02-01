@@ -39,7 +39,8 @@ router.get('/', function(req, res) {
 							chapterUrl = $(this).attr('href');
 							chapterFullUrl = chapterUrl;
 							chapterTitle = $(this).text();
-							chapterUrl = chapterUrl.split("/").slice(2).join("/");
+							chapNum = chapterUrl.split("-").pop();
+							chapterUrl = chapterUrl.split("/").slice(2,4).join("/") + "/" + chapNum;
 						});
 
 						var chapter = {
