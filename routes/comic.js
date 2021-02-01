@@ -33,7 +33,7 @@ router.get('/', function(req, res) {
 						var chapterFullUrl = null;
 						var chapterTitle = null;
 						var chapterDescription = null;
-						var chapterDate = "01/01/2222";
+						var chapterDate = "01/01/2021";
 
 						$(this).find('a').each(function() {
 							chapterUrl = $(this).attr('href');
