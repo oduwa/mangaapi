@@ -54,6 +54,9 @@ router.get('/', function(req, res) {
 						}
 					});
 
+					chapters = chapters.sort(function(a,b) {
+					    return b.chapterTitle - a.chapterTitle
+					});
 	        var chapterResults = {
 	        	"comicUrl" : comicUrl,
 						"description": description,
