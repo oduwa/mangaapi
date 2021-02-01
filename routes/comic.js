@@ -37,7 +37,7 @@ router.get('/', function(req, res) {
 
 						$(this).find('a').each(function() {
 							chapterUrl = $(this).attr('href');
-							chapterFullUrl = rootUrl + chapterUrl;
+							chapterFullUrl = chapterUrl;
 							chapterTitle = $(this).text();
 						});
 
