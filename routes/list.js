@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET search results listing. */
 router.get('/', function(req, res) {
-  var rootUrl = 'http://www.mangareader.net';
+  var rootUrl = 'http://www.mangareader.cc';
   var itemsPerPage = 30;
 
   var url = rootUrl + "/alphabetical"

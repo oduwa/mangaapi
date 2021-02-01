@@ -4,7 +4,7 @@ var request = require('request');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-	var rootUrl = 'http://www.mangareader.net';
+	var rootUrl = 'http://www.mangareader.cc/manga';
 	var itemsPerPage = 30;
 	var searchTerm = req.query.t;
 

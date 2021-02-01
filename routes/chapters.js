@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET chapter listing. */
 router.get('/', function(req, res) {
-	var rootUrl = 'http://www.mangareader.net';
+	var rootUrl = 'http://www.mangareader.cc';
 	var chapterUrl = req.query.c;
 
 	if (chapterUrl) {
@@ -17,21 +17,17 @@ router.get('/', function(req, res) {
 
 	        $ = cheerio.load(body);
 
-					var data = $('#main script').text().replace("document[\"mj\"]=", "");
-					var chapterData = JSON.parse(data);
-
+					var chapterData = $('#arraydata').text().split(",");
 					urlComponents = chapterUrl.split("/");
 					console.log(urlComponents);
-					console.log(chapterData["im"]);
-					for(i = 0; i < chapterData["im"].length; i++){
+					for(i = 0; i < chapterData.length; i++){
 						pageNum = i+1;
 						pages.push({
 		                    "pageNumber": pageNum,
-		                    "pageUrl": "/" + urlComponents[3] + "/" + urlComponents[4] + "/" + pageNum,
-		                    "pageFullUrl" : chapterUrl + "/" + pageNum
+		                    "pageUrl": "/" + urlComponents[3] + "/" + urlComponents[4] + "#" + pageNum,
+		                    "pageFullUrl" : chapterUrl + "%23" + pageNum
 		                });
 					}
-
 
 	        var pageResults = {
 	        	"chapterUrl" : chapterUrl,

@@ -5,46 +5,39 @@ var router = express.Router();
 
 /* GET page listing. */
 router.get('/', function(req, res) {
-	var rootUrl = 'http://www.mangareader.net';
+	var rootUrl = 'http://www.mangareader.cc';
 	var pageUrl = req.query.p;
 
 	if (pageUrl) {
-	    request(pageUrl, function(err, resp, body) {
+			request(pageUrl, function(err, resp, body) {
 	        if (err)
 	            throw err;
 
 	        $ = cheerio.load(body);
 
 			var page = {};
+			var chapterData = $('#arraydata').text().split(",");
+			var pageNum = Number(pageUrl.split("#").pop());
+			var im = chapterData[pageNum-1].trim();
 
+			var imageWidth = null;
+			var imageHeight = null;
+			var imageSource = null;
+			var imageAlt = null;
 
-			$('#main .d54 .d56 #ic').each(function(result){
-				$(this).find('img').each(function(){
-					var imageWidth = null;
-					var imageHeight = null;
-					var imageSource = null;
-					var imageAlt = null;
+			page = {
+									"imageWidth": imageWidth,
+									"imageHeight" : imageHeight,
+									"imageSource" : im,
+									"imageAlt" : imageAlt
+			 };
 
-					imageWidth = $(this).attr('width');
-					imageHeight = $(this).attr('height');
-					imageSource = $(this).attr('src');
-					imageAlt = $(this).attr('alt');
+      var pageResults = {
+      	"pageUrl" : pageUrl,
+      	"pageImage" : page
+      };
 
-					page = {
-	                    "imageWidth": imageWidth,
-	                    "imageHeight" : imageHeight,
-	                    "imageSource" : "http:" + imageSource,
-	                    "imageAlt" : imageAlt
-	         };
-				});
-			});
-
-	        var pageResults = {
-	        	"pageUrl" : pageUrl,
-	        	"pageImage" : page
-	        };
-
-	        res.send(JSON.stringify(pageResults));
+      res.send(JSON.stringify(pageResults));
 	    });
 	} else {
 		res.send('no searchTerm');
