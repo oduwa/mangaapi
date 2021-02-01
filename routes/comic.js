@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET comic listing. */
 router.get('/', function(req, res) {
-	var rootUrl = 'http://www.mangareader.net';
+	var rootUrl = 'http://www.mangareader.cc';
 	var comicUrl = req.query.c;
 
 	if (comicUrl) {
@@ -39,6 +39,7 @@ router.get('/', function(req, res) {
 							chapterUrl = $(this).attr('href');
 							chapterFullUrl = chapterUrl;
 							chapterTitle = $(this).text();
+							chapterUrl = chapterUrl.split("/").slice(2).join("/");
 						});
 
 						var chapter = {
